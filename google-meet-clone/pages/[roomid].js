@@ -9,6 +9,17 @@ const room = () => {
   const { peer, myId } = usePeer();
   const { stream } = useMediaStream();
 
+  useEffect(() => {
+    if (!socket) return;
+    const handelUserLogin = (newUser) => {
+      console.log(`user is connected in room with userId ${newUser}`);
+    };
+    socket.on('user-connected', handelUserLogin);
+
+    return () => {
+      socket.off('user-connected', handelUserLogin);
+    };
+  }, [socket]);
   return (
     <div>
       <Player url={stream} muted playing playerId={myId} />
