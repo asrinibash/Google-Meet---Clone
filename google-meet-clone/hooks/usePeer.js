@@ -12,9 +12,9 @@ const usePeer = () => {
   useEffect(() => {
     if (isPeerSet.current || !socket || !roomId) return;
     isPeerSet.current = true;
-
+    let myPeer;
     (async function initPeer() {
-      const myPeer = new (await import("peerjs")).default();
+     myPeer = new (await import("peerjs")).default();
       setPeer(myPeer);
 
       myPeer.on("open", (id) => {

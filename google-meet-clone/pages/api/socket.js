@@ -11,7 +11,7 @@ const SocketHandler = (req, res) => {
     io.on("connection", (socket) => {
       console.log("server is connected");
 
-      socket.on("JOIN ROOM", (roomId, userId) => {
+      socket.on("join-room", (roomId, userId) => {
         console.log(`a new user ${roomId} joined room ${userId}`);
         socket.join(roomId);
 
